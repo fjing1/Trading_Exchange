@@ -1,0 +1,14 @@
+#debug: true
+
+spring:
+  datasource:
+    username: admin
+    password: ECE651123
+    url: jdbc:mysql://database-1.cbifqpta8wxq.us-east-2.rds.amazonaws.com:3306/stock_trader
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 600000
+
+mybatis:
+  type-aliases-package: com.company.project.pojo
+  mapper-locations: classpath:com/company/project/mapper/*.xml

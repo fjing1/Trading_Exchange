@@ -1,0 +1,24 @@
+name: backend_format
+
+on:
+  pull_request:
+    paths:
+      - backend/**
+  push:
+    branches:    
+      - main
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event_name != 'pull_request'
+        uses: actions/checkout@v3
+      - if: github.event_name == 'pull_request'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--skip-sorting-imports --replace -a"
