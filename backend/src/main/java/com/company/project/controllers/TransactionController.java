@@ -15,14 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
+// Annotation to indicate that this class is a REST Controller
 @RestController
+// Swagger API annotation for documentation
 @Api
+// Mapping this controller to handle requests at the /transaction endpoint
 @RequestMapping("/transaction")
 public class TransactionController {
+    // Autowiring the TransactionService using @Resource annotation
     @Resource private TransactionService transactionService;
 
+    // Endpoint to handle "buy" transactions
     @PostMapping("/buy")
     public Result buy(@RequestBody TransactionInfoParam transactionInfoParam) {
+        // Call the buy method of transactionService with the provided parameters
+        // If the transaction is successful, return a success result
+        // Otherwise, return a failure result
         if (transactionService.buy(transactionInfoParam)) {
             return ResultGenerator.genSuccessResult();
         } else {
